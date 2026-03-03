@@ -1,0 +1,36 @@
+{
+  "title": "Get all authors schema",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "required": [
+        "id",
+        "idBook",
+        "firstName",
+        "lastName"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "idBook": {
+          "type": "integer"
+        },
+        "firstName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lastName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  ]
+}
