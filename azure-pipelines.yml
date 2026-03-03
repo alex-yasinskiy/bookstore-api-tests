@@ -1,0 +1,28 @@
+trigger: none
+pr: none
+
+# will use microsoft hosted agent, but in real projects I work with custom VMs
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: JavaToolInstaller@0
+    displayName: 'Setup Java 21'
+    inputs:
+      versionSpec: '21'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
+
+  # env may be customised with parameters, so we could select it when starting pipeline
+  - script: |
+      echo "Starting API tests..."
+      mvn clean test -Denv=qa
+    displayName: 'Run API Tests via Maven'
+    continueOnError: true
+
+  # in order to use this, need to install plugin in azure
+  - task: qameta.allure-azure-pipelines.allure-runner-task.AllureGenerate@1
+    displayName: 'Generate and Publish Allure Report'
+    inputs:
+      resultsDir: 'target/allure-results'
+      targetDir: 'allure-report'
