@@ -27,7 +27,7 @@ import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.not;
 
 @Epic("Bookstore API")
-@Feature("Books Management")
+@Feature("Books Management - positive tests")
 public class BookApiPositiveTests {
 
     private BookHandler bookHandler;
@@ -107,15 +107,6 @@ public class BookApiPositiveTests {
     @Test
     @DisplayName("Test GET request for the book by ID")
     void getBookByIdSuccessfully() {
-        // need to get all books, because book that I create within preconditions could not be found by ID
-        // that was workaround for testing fake endpoint, but decide to leave code that is failing on the status verification
-        /* Response responseAllBooks = bookHandler.getBooks();
-        BookBody expectedBook = responseAllBooks.getBody().jsonPath()
-                .getList(".", BookBody.class)
-                .stream()
-                .findAny()
-                .orElseThrow(() -> new AssertionError("List of books is empty"));*/
-
         Response response = bookHandler.getBookById(preCreatedBook.getId().toString());
 
         assertCode(response.getStatusCode(), 200);

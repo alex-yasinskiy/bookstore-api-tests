@@ -74,6 +74,11 @@ for integration with Azure DevOps.
 - [x] **DELETE /Books/{id}** — Delete a book by ID.
 - [x] Similar endpoints are covered for the **Authors API**. But each Authors api call also consider creating at least 
 one book, because Author is expected to have bookId.
+- [x] **GET /Books/{id}**, **PUT /Books/{id}**, **DELETE /Books/{id}** — Negative scenarios for book endpoints.
+Test try to get/put/delete book that was already deleted.
+
+> **Note:** **That is not complete list of test scenarios.** These set will show some FW features and approaches
+> but doesn't provide complete test coverage with all positive and negative scenarios.
 
 ## 💡 Key Features
 * **Contract Testing:** Strict JSON Schema validation is performed.
@@ -83,3 +88,27 @@ Each book test creates new book before starting, and each author test creates au
 them in the `@AfterEach` teardown block.
 * **Environment Configuration** The framework is designed to seamlessly switch between multiple environments 
 (e.g., `dev`, `qa`, `prod`) using a custom `ConfigReader` utility and an `application.properties` file.
+
+## 📊 Test Report Preview
+The framework utilizes **Allure Report** to generate test execution reports.
+
+Below are static previews of the test results.
+
+### Dashboard Overview
+Provides a high-level summary of the test execution, including the overall
+pass/fail rate and execution time.
+
+![Allure Dashboard Overview](./docs/dashboard.png)
+
+### Detailed Test Scenarios & API Logs
+The reports include detailed step-by-step execution for each test case.
+REST Assured is integrated with Allure to automatically attach full HTTP
+request and response logs (URIs, headers, bodies, status codes) for easy
+debugging and trace analysis. <br>
+**PASSed test**
+
+![Allure Test Details and Logs](./docs/passed.png)
+
+**FAILed test**
+
+![Allure Test Details and Logs](./docs/failed.png)

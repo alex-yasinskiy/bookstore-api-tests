@@ -27,7 +27,7 @@ import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.empty;
 
 @Epic("Bookstore API")
-@Feature("Authors Management")
+@Feature("Authors Management - positive tests")
 public class AuthorApiPositiveTests {
 
     private AuthorHandler authorHandler;
